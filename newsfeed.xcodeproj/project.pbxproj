@@ -20,6 +20,8 @@
 		357ECED427DAE15200305ACB /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357ECED327DAE15200305ACB /* ErrorView.swift */; };
 		357ECED627DAE15F00305ACB /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357ECED527DAE15F00305ACB /* FeedView.swift */; };
 		357ECED827DAE16E00305ACB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357ECED727DAE16E00305ACB /* SettingsView.swift */; };
+		35C4F0F827F044BC00F345FB /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 35C4F0F727F044BC00F345FB /* URLImage */; };
+		35C4F0FA27F044BC00F345FB /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 35C4F0F927F044BC00F345FB /* URLImageStore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35C4F0FA27F044BC00F345FB /* URLImageStore in Frameworks */,
+				35C4F0F827F044BC00F345FB /* URLImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +162,10 @@
 			dependencies = (
 			);
 			name = newsfeed;
+			packageProductDependencies = (
+				35C4F0F727F044BC00F345FB /* URLImage */,
+				35C4F0F927F044BC00F345FB /* URLImageStore */,
+			);
 			productName = newsfeed;
 			productReference = 357ECEB027D0754B00305ACB /* newsfeed.app */;
 			productType = "com.apple.product-type.application";
@@ -186,6 +194,9 @@
 				Base,
 			);
 			mainGroup = 357ECEA727D0754B00305ACB;
+			packageReferences = (
+				35C4F0F627F044BC00F345FB /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = 357ECEB127D0754B00305ACB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -425,6 +436,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		35C4F0F627F044BC00F345FB /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		35C4F0F727F044BC00F345FB /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35C4F0F627F044BC00F345FB /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		35C4F0F927F044BC00F345FB /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35C4F0F627F044BC00F345FB /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 357ECEA827D0754B00305ACB /* Project object */;
 }

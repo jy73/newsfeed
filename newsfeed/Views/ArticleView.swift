@@ -18,26 +18,31 @@ struct ArticleView: View {
             // TODO: Add image view
             if let image = article.image,
                let url = URL(string: image){
-               
-                URLImage(url: url,
-                         options: URLImageOptions(
-                            identifier: article.id.uuidString,      // Custom identifier
-                            cachePolicy: .returnCacheElseLoad(cacheDelay: nil, downloadDelay: 0.25) // Return cached image or download after delay
-                                          ),
-                         failure: { error, retry in         // Display error and retry button
-                            Image(systemName: "photo.fill")
-                                .foregroundColor(.white)
-                                .background(Color.gray)
-                                .frame(width: 100, height: 100)
-                                .cornerRadius(10)
-                         },
-                         content: { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                         })
-                    .frame(width: 100, height: 100)
-                    .cornerRadius(10)
+                
+                URLImage(url, identifier: url.absoluteString) {
+                    // This view is displayed before download starts
+                    EmptyView()
+                } inProgress: { progress in
+                    // Display progress
+                   ProgressView()
+                } failure: { error, retry in
+                    // Display error and retry button
+                    Image(systemName: "photo.fill")
+                        .foregroundColor(.white)
+                        .background(Color.gray)
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(10)
+                } content: { image in
+                    // Downloaded image
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                .environment(\.urlImageOptions,
+                              .init(fetchPolicy: .returnStoreElseLoad(downloadDelay: nil)))
+
             } else {
                 Image(systemName: "photo.fill")
                     .foregroundColor(.white)
